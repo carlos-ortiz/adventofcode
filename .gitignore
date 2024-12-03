@@ -1,59 +1,77 @@
-####################
-# Vim https://github.com/github/gitignore.git
-################3###
-# Swap
-[._]*.s[a-v][a-z]
-!*.svg  # comment out if you don't need vector files
-[._]*.sw[a-p]
-[._]s[a-rt-v][a-z]
-[._]ss[a-gi-z]
-[._]sw[a-p]
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
-# Session
-Session.vim
-Sessionx.vim
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
 
-# Temporary
-.netrwhist
-*~
-# Auto-generated tag files
-tags
-# Persistent undo
-[._]*.un~
+# AWS User-specific
+.idea/**/aws.xml
 
+# Generated files
+.idea/**/contentModel.xml
 
-####################
-# Octave https://github.com/github/gitignore.git
-################3###
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
 
-# Windows default autosave extension
-*.asv
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
 
-# OSX / *nix default autosave extension
-*.m~
+# Gradle and Maven with auto-import
+# When using Gradle or Maven with auto-import, you should exclude module files,
+# since they will be recreated, and may cause churn.  Uncomment if using
+# auto-import.
+# .idea/artifacts
+# .idea/compiler.xml
+# .idea/jarRepositories.xml
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/modules
+# *.iml
+# *.ipr
 
-# Compiled MEX binaries (all platforms)
-*.mex*
+# CMake
+cmake-build-*/
 
-# Packaged app and toolbox files
-*.mlappinstall
-*.mltbx
+# Mongo Explorer plugin
+.idea/**/mongoSettings.xml
 
-# Generated helpsearch folders
-helpsearch*/
+# File-based project format
+*.iws
 
-# Simulink code generation folders
-slprj/
-sccprj/
+# IntelliJ
+out/
 
-# Matlab code generation folders
-codegen/
+# mpeltonen/sbt-idea plugin
+.idea_modules/
 
-# Simulink autosave extension
-*.autosave
+# JIRA plugin
+atlassian-ide-plugin.xml
 
-# Simulink cache files
-*.slxc
+# Cursive Clojure plugin
+.idea/replstate.xml
 
-# Octave session info
-octave-workspace
+# SonarLint plugin
+.idea/sonarlint/
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Editor-based Rest Client
+.idea/httpRequests
+
+# Android studio 3.1+ serialized cache file
+.idea/caches/build_file_checksums.ser
