@@ -23,13 +23,18 @@ if __name__ == '__main__':
       tmp = re.findall(r'(mul\(\d{1,3},\d{1,3}\)|don\'t\(\)|do\(\))', line)
       mul+=tmp
 
-  for i in [index for index,value in enumerate(mul) if value==dont]:
-    next_dont = next((index for index, value in enumerate(mul) if value == dont), len(mul))
-    next_do = next((index for index, value in enumerate(mul) if index > next_dont and value == do), len(mul) - 1)
-    for j in range(next_dont, next_do + 1):
-      mul.pop(next_dont)
+  remove=False
+  mul_copy=[]
+  for x in range(len(mul)):
+    mul_copy.append(mul[x])
+    if mul[x]==dont:
+      remove=True
+    if mul[x]==do:
+      remove=False
+    if remove:
+      mul_copy.pop()
 
-  for val in mul:
+  for val in mul_copy:
     if val!=do:
       v=re.sub(r'[mul()]','',val).split(',')
       part2+=int(v[0])*int(v[1])
