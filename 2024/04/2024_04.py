@@ -32,17 +32,14 @@ if __name__ == '__main__':
   part1=0
   part2=0
 
-  teststr="XMAS"
+  xmas= "XMAS"
 
   adata = np.loadtxt("2024_04.dat", dtype=str)
 
   mdata = np.empty([len(adata), len(adata[0])], dtype=str)
-  mdim=mdata.ndim
-  mshape=mdata.shape
   for i,line in enumerate(adata):
     for j,item in enumerate(line):
       mdata[i,j] = item
-  tdata=mdata.transpose()
 
   for i, mdatum in enumerate(mdata):
     row=mdata[i]
@@ -52,15 +49,15 @@ if __name__ == '__main__':
     diag3=np.diagonal(np.fliplr(mdata), i)
     diag4=np.diagonal(np.fliplr(mdata).transpose(), i)
 
-    part1 += check_line(teststr, "".join(row))
-    part1 += check_line(teststr, "".join(col))
+    part1 += check_line(xmas, "".join(row))
+    part1 += check_line(xmas, "".join(col))
 
-    part1 += check_line(teststr, "".join(diag1))
-    part1 += check_line(teststr, "".join(diag3))
+    part1 += check_line(xmas, "".join(diag1))
+    part1 += check_line(xmas, "".join(diag3))
 
     if i != 0:
-      part1 += check_line(teststr, "".join(diag2))
-      part1 += check_line(teststr, "".join(diag4))
+      part1 += check_line(xmas, "".join(diag2))
+      part1 += check_line(xmas, "".join(diag4))
 
 
   tmp=np.loadtxt("2024_04_test.dat", dtype=str)
