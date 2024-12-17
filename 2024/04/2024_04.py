@@ -1,4 +1,6 @@
 # https://adventofcode.com/2024/day/4
+
+import re
 import numpy as np
 
 # https://www.geeksforgeeks.org/searching-in-a-numpy-array/
@@ -13,13 +15,17 @@ def check_horizontal(data):
     print(row)
 
   return 0
+
+
 def check_vertical(data):
+
   return 0
+
+
 def check_diagonal(data):
+
   return 0
 
-
-import re
 
 def check_line(sub, my_line):
   forward=re.findall(sub, my_line)
@@ -27,12 +33,39 @@ def check_line(sub, my_line):
 
   return len(forward) + len(backward)
 
+def check_mas(i, j, m):
+  matches = 0
+  mas = "MAS"
+  if i < 1 or i > 8:
+    return 0
+  if j < 1 or j > 8:
+    return 0
+
+  line_1 = m[i-1][j-1] + m[i][j] + m[i+1][j+1]
+  line_2 = m[i-1][j+1] + m[i][j] + m[i+1][j-1]
+
+  if mas in line_1 and mas in line_2:
+#    print("XMAS",i,j)
+    return 1
+  if mas in line_1 and mas in line_2[::-1]:
+#    print("XMAS",i,j)
+    return 1
+  if mas in line_1[::-1] and mas in line_2:
+#    print("XMAS",i,j)
+    return 1
+  if mas in line_1[::-1] and mas in line_2[::-1]:
+#    print("XMAS",i,j)
+    return 1
+
+
+  return 0
 
 if __name__ == '__main__':
   part1=0
   part2=0
 
-  xmas= "XMAS"
+  xmas = "XMAS"
+  mas = "MAS"
 
   adata = np.loadtxt("2024_04.dat", dtype=str)
 
@@ -62,15 +95,18 @@ if __name__ == '__main__':
 
   tmp=np.loadtxt("2024_04_test.dat", dtype=str)
   data=np.empty(shape=(len(tmp), len(tmp)), dtype=str)
+  for i,line in enumerate(tmp):
+    for j,item in enumerate(line):
+      data[i,j] = item
 
-  for item,value in enumerate(tmp):
-    data[item,:]=list(value)
-
-#  part1+=check_horizontal(data)
-#  part1+=check_vertical(data)
-#  part1+=check_vertical(data)
-
-
+  all_x = np.where(mdata=='A')
+  print(all_x[0].shape)
+  print(all_x[1].shape)
+  for x in range(len(all_x[0])):
+    ii=all_x[0][x]
+    jj=all_x[1][x]
+#    print("A",all_x[0][x], all_x[1][x])
+    part2 += check_mas(all_x[0][x], all_x[1][x], mdata)
 
   print("--- RESULT ---")
   print(part1)
