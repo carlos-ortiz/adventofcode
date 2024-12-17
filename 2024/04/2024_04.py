@@ -34,7 +34,6 @@ def check_line(sub, my_line):
   return len(forward) + len(backward)
 
 def check_mas(i, j, m):
-  matches = 0
   mas = "MAS"
   if i < 1 or i > 8:
     return 0
@@ -45,16 +44,12 @@ def check_mas(i, j, m):
   line_2 = m[i-1][j+1] + m[i][j] + m[i+1][j-1]
 
   if mas in line_1 and mas in line_2:
-#    print("XMAS",i,j)
     return 1
   if mas in line_1 and mas in line_2[::-1]:
-#    print("XMAS",i,j)
     return 1
   if mas in line_1[::-1] and mas in line_2:
-#    print("XMAS",i,j)
     return 1
   if mas in line_1[::-1] and mas in line_2[::-1]:
-#    print("XMAS",i,j)
     return 1
 
 
@@ -93,20 +88,12 @@ if __name__ == '__main__':
       part1 += check_line(xmas, "".join(diag4))
 
 
-  tmp=np.loadtxt("2024_04_test.dat", dtype=str)
-  data=np.empty(shape=(len(tmp), len(tmp)), dtype=str)
-  for i,line in enumerate(tmp):
-    for j,item in enumerate(line):
-      data[i,j] = item
-
   all_x = np.where(mdata=='A')
-  print(all_x[0].shape)
-  print(all_x[1].shape)
-  for x in range(len(all_x[0])):
-    ii=all_x[0][x]
-    jj=all_x[1][x]
-#    print("A",all_x[0][x], all_x[1][x])
-    part2 += check_mas(all_x[0][x], all_x[1][x], mdata)
+  XX=all_x[0]
+  YY=all_x[1]
+
+  for i in range(len(XX)):
+    part2 += check_mas(XX[i], YY[i], mdata)
 
   print("--- RESULT ---")
   print(part1)
