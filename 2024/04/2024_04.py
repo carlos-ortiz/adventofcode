@@ -35,32 +35,34 @@ def check_line(sub, my_line):
 
 def check_mas(i, j, m):
   mas = "MAS"
-  if i < 1 or i > 8:
-    return 0
-  if j < 1 or j > 8:
-    return 0
+  if len(m.shape)!=2:
+    return ValueError
+
+  if i < 1 or i > m.shape[0]-2:
+    return False
+  if j < 1 or j > m.shape[1]-2:
+    return False
 
   line_1 = m[i-1][j-1] + m[i][j] + m[i+1][j+1]
   line_2 = m[i-1][j+1] + m[i][j] + m[i+1][j-1]
 
   if mas in line_1 and mas in line_2:
-    return 1
+    return True
   if mas in line_1 and mas in line_2[::-1]:
-    return 1
+    return True
   if mas in line_1[::-1] and mas in line_2:
-    return 1
+    return True
   if mas in line_1[::-1] and mas in line_2[::-1]:
-    return 1
+    return True
 
+  return False
 
-  return 0
 
 if __name__ == '__main__':
   part1=0
   part2=0
 
   xmas = "XMAS"
-  mas = "MAS"
 
   adata = np.loadtxt("2024_04.dat", dtype=str)
 
@@ -69,9 +71,9 @@ if __name__ == '__main__':
     for j,item in enumerate(line):
       mdata[i,j] = item
 
-  for i, mdatum in enumerate(mdata):
-    row=mdata[i]
+  for i, row in enumerate(mdata):
     col=mdata.transpose()[i]
+
     diag1=np.diagonal(mdata, i)
     diag2=np.diagonal(mdata.transpose(), i)
     diag3=np.diagonal(np.fliplr(mdata), i)
@@ -88,12 +90,11 @@ if __name__ == '__main__':
       part1 += check_line(xmas, "".join(diag4))
 
 
-  all_x = np.where(mdata=='A')
-  XX=all_x[0]
-  YY=all_x[1]
-
-  for i in range(len(XX)):
-    part2 += check_mas(XX[i], YY[i], mdata)
+  for i,row in enumerate(mdata):
+    for j,item in enumerate(row):
+      if item == 'A':
+        if check_mas(i, j, mdata):
+          part2 += 1
 
   print("--- RESULT ---")
   print(part1)
