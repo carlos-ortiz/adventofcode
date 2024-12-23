@@ -52,14 +52,9 @@ if __name__ == '__main__':
           print("WARNING")
 
         if item in order:
-          check_order(item, line, order)
-
-          l=find_index(line, before)
-          m=find_index(line, after)
-
-
-          if l < m:
-            part1 += 1
+          check_order(order, line)
+  # add if no conflicts
+  # part1 += median(line)
 
 
 
